@@ -3,9 +3,9 @@
     use PHPMailer\PHPMailer\Exception;
     use PHPMailer\PHPMailer\PHPMailer;
 
-    require 'PHPMailer/src/Exception.php';
-    require 'PHPMailer/src/PHPMailer.php';
-    require 'PHPMailer/src/SMTP.php';
+    require 'node_modules/PHPMailer/src/Exception.php';
+    require 'node_modules/PHPMailer/src/PHPMailer.php';
+    require 'node_modules/PHPMailer/src/SMTP.php';
 
     $response = $_POST["g-recaptcha-response"];
     $url = 'https://www.google.com/recaptcha/api/siteverify';
