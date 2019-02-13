@@ -237,13 +237,13 @@
                                         <input required type="email" name="email" class="form-control form-control-lg" id="inputEmail" placeholder="Email">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input type="text" name="telefone" class="form-control form-control-lg" id="inputTelefone" placeholder="Telefone">
+                                        <input required type="text" name="telefone" class="form-control form-control-lg" id="inputTelefone" placeholder="Telefone">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input type="text" name="cidade" class="form-control form-control-lg" id="inputCidade" placeholder="Cidade">
+                                        <input required type="text" name="cidade" class="form-control form-control-lg" id="inputCidade" placeholder="Cidade">
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <textarea rows="8" name="observacao" class="form-control form-control-lg" id="inputObs" placeholder="OBSERVAÇÃO"></textarea>
+                                        <textarea required rows="8" name="observacao" class="form-control form-control-lg" id="inputObs" placeholder="OBSERVAÇÃO"></textarea>
                                     </div>
                                     <div class="form-group col-12">
                                         <div class="g-recaptcha" data-sitekey="6LfsGZEUAAAAAOFy_0A8xldnkxX5gVDtsv-o33fT"></div>
