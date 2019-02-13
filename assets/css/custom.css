@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-style: "Roboto", arial, sans-serif;
+    font-size: 16px;
+    color: #044F91;
+}
+
+/* HEADER */
+
+.bg-header {
+    background-color: #044F91;
+}
+
+.navbar-brand img {
+    height: 32px;
+    margin-right: 6.5rem;
+}
+
+.navbar a {
+    color: #fff;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    margin-right: 40px;
+    font-weight: bold;
+}
+
+.fas.fa-bars {color: #fff;}
+
+/* BANNER */
+
+.title-banner {
+    margin-top: 9rem;
+    margin-bottom: 5.3125rem;
+    font-size: 2.5rem;
+}
+
+.text-banner {
+    font-size: 1.8rem;
+    margin-bottom: 5.3125rem;
+}
+
+.phone {
+    margin-right: 6rem;
+    margin-top: 6.375rem;
+}
+
+.bg-phone {
+    background-color: #F7F7FF;
+    background-image: url("../../assets/images/footer-copyright.svg");
+    background-repeat: no-repeat;
+    background-position: 506px;
+    background-size: cover;
+    padding: 0 0 43px;
+    overflow: hidden;
+}
+
+.bt-teste:link {
+    text-decoration: none;
+}
+
+/* FUNÇÕES */
+
+.title-pa {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    font-size: 2.1rem;
+}
+
+#functions .fas {
+    margin-right: 0.8125rem;
+    font-size: 3.5625rem;
+}
+
+.fun-item {
+    margin-right: 10px;
+    margin-bottom: 3.125rem;
+}
+
+/* CONTATO */
+
+.bg-contact {
+    background-color: #DAEEFF;
+}
+
+input::placeholder{
+    color: rgba(5, 78, 144, 0.5) !important;
+    font-weight: bold;
+}
+
+textarea::placeholder{
+    color: rgba(5, 78, 144, 0.5) !important;
+    font-weight: bold;
+}
+
+input::-moz-placeholder {
+    opacity: 1;
+  }
+
+  /* FOOTER */
+
+  .bg-footer {
+      background-color: #044F91;
+  }
+
+  footer img {
+    width: 112px;
+  }
+
+  footer figure {
+    margin-top: 1rem;
+}
+
+.social-item {
+    color: #fff;
+    padding: 1rem .5rem;
+}
+
+.social-item i {
+    font-size: 32px;
+    margin: 1rem 0;
+}
