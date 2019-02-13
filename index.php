@@ -84,13 +84,17 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="author" content="Iago Virgílio">
+    <meta name="keywords" content="sistema emissão nota fiscal, emissão nota fiscal, sistema, emissão, nota fiscal, nfe, nfce, autônomo, mei, online, rápido, fácil">
+    <meta name="description" content="Prático NF-e é um sistema para emissão de Nota Fiscal eletrônica que ajuda autônomos e MEI's na compra e venda de produtos e serviços de forma simples e rápida">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="assets/images/favicon.png" rel="icon" sizes="32x32" type="image/png">
     <link rel="stylesheet" href="node_modules/bootstrap-4.3.0-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossorigin="anonymous">
-    <title>Prático NFe</title>
+    <title>Prático NFe - Emissão de Nota Fiscal eletrônica de forma simples e rápida!</title>
 
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
