@@ -104,6 +104,10 @@ input::-moz-placeholder {
     opacity: 1;
   }
 
+  #contact .btn-success {
+      margin-bottom: 1rem;
+  }
+
   /* FOOTER */
 
   .bg-footer {
