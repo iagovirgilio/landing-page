@@ -249,7 +249,7 @@
                                         <textarea rows="8" name="observacao" class="form-control form-control-lg" id="inputObs" placeholder="OBSERVAÇÃO"></textarea>
                                     </div>
                                     <div class="form-group col-12">
-                                        <div class="g-recaptcha" data-sitekey=""></div>
+                                        <div class="g-recaptcha" data-sitekey="6LfsGZEUAAAAAOFy_0A8xldnkxX5gVDtsv-o33fT"></div>
                                     </div>
                                 </div>
                                 <div class="form-group col-12 text-center">
