@@ -1,3 +1,60 @@
+<?php
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    require 'node_modules/PHPMailer/src/Exception.php';
+    require 'node_modules/PHPMailer/src/PHPMailer.php';
+    require 'node_modules/PHPMailer/src/SMTP.php';
+
+    if (isset($_POST['nome']) && !empty($_POST['nome'])) {
+        $nome = $_POST['nome'];
+    }
+    if (isset($_POST['email']) && !empty($_POST['email'])) {
+        $email = $_POST['email'];
+    }
+    if (isset($_POST['telefone']) && !empty($_POST['telefone'])) {
+        $telefone = $_POST['telefone'];
+    }
+    if (isset($_POST['cidade']) && !empty($_POST['cidade'])) {
+        $cidade = $_POST['cidade'];
+    }
+    if (isset($_POST['observacao']) && !empty($_POST['observacao'])) {
+        $observacao = $_POST['observacao'];
+    }
+
+    $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+    try {
+        //Server settings
+        $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+        $mail->isSMTP();                                      // Set mailer to use SMTP
+        $mail->Host = '';                                     // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+        $mail->Username = 'user@example.com';                 // SMTP username
+        $mail->Password = 'secret';                           // SMTP password
+        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+        $mail->Port = 587;                                    // TCP port to connect to
+
+        //Recipients
+        $mail->setFrom($email, $nome);
+        $mail->addReplyTo('no-reply@email.com.br');
+        $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
+
+        //Content
+        $mail->isHTML(true);                                  // Set email format to HTML
+        $mail->Subject = 'Mensagem enviada da landing page.';
+        $mail->Body    = '<p>Nome: '.$nome.'</p><br>
+                          <p>Email: '.$email.'</p><br>
+                          <p>Telefone: '.$telefone.'</p><br>
+                          <p>Cidade: '.$cidade.'</p><br>
+                          <p>Observação: '.nl2br($observacao).'</p>';
+
+        $mail->send();
+        echo 'Mensagem enviada!';
+    } catch (Exception $e) {
+        echo 'Mensagem não pode ser enviada. Mailer Error: ', $mail->ErrorInfo;
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -10,6 +67,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossorigin="anonymous">
     <title>Prático NFe</title>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>
@@ -172,22 +231,25 @@
                             <h3 class="title-pa">SAIBA MAIS</h3>
                         </div>
                         <div class="col-12">
-                            <form>
+                            <form action="" method="POST">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <input required type="text" class="form-control form-control-lg" id="inputNome" placeholder="Nome">
+                                        <input required type="text" name="nome" class="form-control form-control-lg" id="inputNome" placeholder="Nome">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input required type="email" class="form-control form-control-lg" id="inputEmail" placeholder="Email">
+                                        <input required type="email" name="email" class="form-control form-control-lg" id="inputEmail" placeholder="Email">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input type="text" class="form-control form-control-lg" id="inputTelefone" placeholder="Telefone">
+                                        <input type="text" name="telefone" class="form-control form-control-lg" id="inputTelefone" placeholder="Telefone">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input type="text" class="form-control form-control-lg" id="inputCidade" placeholder="Cidade">
+                                        <input type="text" name="cidade" class="form-control form-control-lg" id="inputCidade" placeholder="Cidade">
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <textarea rows="8" class="form-control form-control-lg" id="inputObs" placeholder="OBSERVAÇÃO"></textarea>
+                                        <textarea rows="8" name="observacao" class="form-control form-control-lg" id="inputObs" placeholder="OBSERVAÇÃO"></textarea>
+                                    </div>
+                                    <div class="form-group col-12">
+                                        <div class="g-recaptcha" data-sitekey=""></div>
                                     </div>
                                 </div>
                                 <div class="form-group col-12 text-center">
