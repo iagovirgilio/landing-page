@@ -44,11 +44,11 @@
 
                //Recipients
                $mail->setFrom($email, $nome);
-               /* $mail->setFrom('site@example.com.br', 'Plamol Site Mailer'); */
-               $mail->addAddress('example@example.com.br', 'Plamol Information'); // Add a recipient
-               $mail->addReplyTo('example@example.com.br', 'Plamol Information');
+               /* $mail->setFrom('site@example.com.br', 'example Site Mailer'); */
+               $mail->addAddress('example@example.com.br', 'Nome example'); // Add a recipient
+               $mail->addReplyTo('example@example.com.br', 'Nome example');
                /* $mail->addCC('cc@example.com'); */
-               $mail->addBCC('example@example.com.br', 'example');
+               $mail->addBCC('example@example.com.br', 'Nome example');
 
                //Attachments
                /* $mail->addAttachment('/var/tmp/file.tar.gz'); */// Add attachments
