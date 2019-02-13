@@ -1,58 +1,58 @@
 <?php
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
+    // use PHPMailer\PHPMailer\PHPMailer;
+    // use PHPMailer\PHPMailer\Exception;
 
-    require 'node_modules/PHPMailer/src/Exception.php';
-    require 'node_modules/PHPMailer/src/PHPMailer.php';
-    require 'node_modules/PHPMailer/src/SMTP.php';
+    // require 'node_modules/PHPMailer/src/Exception.php';
+    // require 'node_modules/PHPMailer/src/PHPMailer.php';
+    // require 'node_modules/PHPMailer/src/SMTP.php';
 
-    if (isset($_POST['nome']) && !empty($_POST['nome'])) {
-        $nome = $_POST['nome'];
-    }
-    if (isset($_POST['email']) && !empty($_POST['email'])) {
-        $email = $_POST['email'];
-    }
-    if (isset($_POST['telefone']) && !empty($_POST['telefone'])) {
-        $telefone = $_POST['telefone'];
-    }
-    if (isset($_POST['cidade']) && !empty($_POST['cidade'])) {
-        $cidade = $_POST['cidade'];
-    }
-    if (isset($_POST['observacao']) && !empty($_POST['observacao'])) {
-        $observacao = $_POST['observacao'];
-    }
+    // if (isset($_POST['nome']) && !empty($_POST['nome'])) {
+    //     $nome = $_POST['nome'];
+    // }
+    // if (isset($_POST['email']) && !empty($_POST['email'])) {
+    //     $email = $_POST['email'];
+    // }
+    // if (isset($_POST['telefone']) && !empty($_POST['telefone'])) {
+    //     $telefone = $_POST['telefone'];
+    // }
+    // if (isset($_POST['cidade']) && !empty($_POST['cidade'])) {
+    //     $cidade = $_POST['cidade'];
+    // }
+    // if (isset($_POST['observacao']) && !empty($_POST['observacao'])) {
+    //     $observacao = $_POST['observacao'];
+    // }
 
-    $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
-    try {
-        //Server settings
-        $mail->SMTPDebug = 0;                                 // Enable verbose debug output
-        $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = '';                                     // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'user@example.com';                 // SMTP username
-        $mail->Password = 'secret';                           // SMTP password
-        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 587;                                    // TCP port to connect to
+    // $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+    // try {
+    //     //Server settings
+    //     $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+    //     $mail->isSMTP();                                      // Set mailer to use SMTP
+    //     $mail->Host = '';                                     // Specify main and backup SMTP servers
+    //     $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    //     $mail->Username = 'user@example.com';                 // SMTP username
+    //     $mail->Password = 'secret';                           // SMTP password
+    //     $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+    //     $mail->Port = 587;                                    // TCP port to connect to
 
-        //Recipients
-        $mail->setFrom($email, $nome);
-        $mail->addReplyTo('no-reply@email.com.br');
-        $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
+    //     //Recipients
+    //     $mail->setFrom($email, $nome);
+    //     $mail->addReplyTo('no-reply@email.com.br');
+    //     $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
 
-        //Content
-        $mail->isHTML(true);                                  // Set email format to HTML
-        $mail->Subject = 'Mensagem enviada da landing page.';
-        $mail->Body    = '<p>Nome: '.$nome.'</p><br>
-                          <p>Email: '.$email.'</p><br>
-                          <p>Telefone: '.$telefone.'</p><br>
-                          <p>Cidade: '.$cidade.'</p><br>
-                          <p>Observação: '.nl2br($observacao).'</p>';
+    //     //Content
+    //     $mail->isHTML(true);                                  // Set email format to HTML
+    //     $mail->Subject = 'Mensagem enviada da landing page.';
+    //     $mail->Body    = '<p>Nome: '.$nome.'</p><br>
+    //                       <p>Email: '.$email.'</p><br>
+    //                       <p>Telefone: '.$telefone.'</p><br>
+    //                       <p>Cidade: '.$cidade.'</p><br>
+    //                       <p>Observação: '.nl2br($observacao).'</p>';
 
-        $mail->send();
-        echo 'Mensagem enviada!';
-    } catch (Exception $e) {
-        echo 'Mensagem não pode ser enviada. Mailer Error: ', $mail->ErrorInfo;
-    }
+    //     $mail->send();
+    //     echo 'Mensagem enviada!';
+    // } catch (Exception $e) {
+    //     echo 'Mensagem não pode ser enviada. Mailer Error: ', $mail->ErrorInfo;
+    // }
 
 ?>
 <!DOCTYPE html>
@@ -116,17 +116,15 @@
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-12 col-sm-5" align="right">
-                            <figure>
-                                <img src="assets/images/phone.png" alt="" class="img-fluid phone">
-                            </figure>
+                        <div class="col-12 col-sm-5 d-flex justify-content-center align-items-center">
+                            <img src="assets/images/phone.png" alt="" class="img-fluid phone">
                         </div>
 
-                        <div class="col-12 col-sm-7 order-sm-first">
+                        <div class="col-12 col-sm-7 order-sm-first d-flex flex-column justify-content-center align-items-center justify-content-sm-start align-items-sm-start">
                             <h2 class="title-banner">FAÇA EMISSÃO DE NOTAS FISCAIS</h2>
                             <p class="text-banner">
-                                Intuitivo, prático e fácil de usar. <br>
-                                O Prático NFe veio para facilitar <br>
+                                Intuitivo, prático e fácil de usar. 
+                                O Prático NFe veio para facilitar 
                                 o dia a dia do seu negócio
                             </p>
                             <a href="https://praticonfe.com.br/" class="btn-lg btn-success bt-teste">FAÇA UM TESTE GRÁTIS</a>
@@ -268,13 +266,13 @@
             <div class="row">
                 <div class="container">
                     <div class="row">
-                        <div class="col-12 col-sm-6">
-                            <figure>
+                        <div class="col-12 col-sm-6 d-flex justify-content-center justify-content-sm-start">
+                            <figure class="d-flex justify-content-center align-items-center justify-content-sm-start">
                                 <img src="assets/images/praticonfe.svg" alt="">
                             </figure>
                         </div>
 
-                        <div class="col-12 col-sm-6" align="right">
+                        <div class="col-12 col-sm-6 d-flex justify-content-center align-items-center justify-content-sm-end">
                             <a href="" class="social-item">
                                 <i class="fab fa-facebook-square"></i>
                             </a>
