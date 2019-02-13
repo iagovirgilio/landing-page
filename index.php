@@ -1,57 +1,82 @@
 <?php
-    use PHPMailer\PHPMailer\PHPMailer;
+    header('Content-Type: text/html; charset=utf-8');
     use PHPMailer\PHPMailer\Exception;
+    use PHPMailer\PHPMailer\PHPMailer;
 
-    require 'node_modules/PHPMailer/src/Exception.php';
-    require 'node_modules/PHPMailer/src/PHPMailer.php';
-    require 'node_modules/PHPMailer/src/SMTP.php';
+    require 'PHPMailer/src/Exception.php';
+    require 'PHPMailer/src/PHPMailer.php';
+    require 'PHPMailer/src/SMTP.php';
 
-    if (isset($_POST['nome']) && !empty($_POST['nome'])) {
-        $nome = $_POST['nome'];
-    }
-    if (isset($_POST['email']) && !empty($_POST['email'])) {
-        $email = $_POST['email'];
-    }
-    if (isset($_POST['telefone']) && !empty($_POST['telefone'])) {
-        $telefone = $_POST['telefone'];
-    }
-    if (isset($_POST['cidade']) && !empty($_POST['cidade'])) {
-        $cidade = $_POST['cidade'];
-    }
-    if (isset($_POST['observacao']) && !empty($_POST['observacao'])) {
-        $observacao = $_POST['observacao'];
-    }
+    $response = $_POST["g-recaptcha-response"];
+    $url = 'https://www.google.com/recaptcha/api/siteverify';
+    $data = array(
+       'secret' => '6LfsGZEUAAAAAC5ZF45T2-uhPFplgyL7-0g_g4fq',
+       'response' => $_POST["g-recaptcha-response"]
+    );
+    $options = array(
+       'http' => array (
+       'method' => 'POST',
+       'content' => http_build_query($data)
+       )
+    );
+    $context  = stream_context_create($options);
+    $verify = file_get_contents($url, false, $context);
+    $captcha_success=json_decode($verify);
+    if ($captcha_success->success==true) {
+       if (isset($_REQUEST['email'])) {
+           $nome = $_REQUEST['nome'];
+           $email = $_REQUEST['email'];
+           $telefone = $_REQUEST['telefone'];
+           $cidade = $_REQUEST['cidade'];
+           $observacao = $_REQUEST['observacao'];
 
-    $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
-    try {
-        //Server settings
-        $mail->SMTPDebug = 0;                                 // Enable verbose debug output
-        $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = '';                                     // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'user@example.com';                 // SMTP username
-        $mail->Password = 'secret';                           // SMTP password
-        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 587;                                    // TCP port to connect to
+           $mail = new PHPMailer(true); // Passing `true` enables exceptions
+           try {
+               //Server settings
+               $mail->SMTPDebug = 0; // Enable verbose debug output
+               $mail->isSMTP(); // Set mailer to use SMTP
+               $mail->Host = 'server.example.com.br'; // Specify main and backup SMTP servers
+               $mail->SMTPAuth = true; // Enable SMTP authentication
+               $mail->Username = 'site@example.com.br'; // SMTP username
+               $mail->Password = 'xxxxx'; // SMTP password
+               $mail->SMTPSecure = 'ssl'; // Enable TLS encryption, `ssl` also accepted
+               $mail->Port = 465; // TCP port to connect to
 
-        //Recipients
-        $mail->setFrom($email, $nome);
-        $mail->addReplyTo('no-reply@email.com.br');
-        $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
+               //Recipients
+               $mail->setFrom($email, $nome);
+               /* $mail->setFrom('site@example.com.br', 'Plamol Site Mailer'); */
+               $mail->addAddress('example@example.com.br', 'Plamol Information'); // Add a recipient
+               $mail->addReplyTo('example@example.com.br', 'Plamol Information');
+               /* $mail->addCC('cc@example.com'); */
+               $mail->addBCC('example@example.com.br', 'example');
 
-        //Content
-        $mail->isHTML(true);                                  // Set email format to HTML
-        $mail->Subject = 'Mensagem enviada da landing page.';
-        $mail->Body    = '<p>Nome: '.$nome.'</p><br>
-                          <p>Email: '.$email.'</p><br>
-                          <p>Telefone: '.$telefone.'</p><br>
-                          <p>Cidade: '.$cidade.'</p><br>
-                          <p>Observação: '.nl2br($observacao).'</p>';
+               //Attachments
+               /* $mail->addAttachment('/var/tmp/file.tar.gz'); */// Add attachments
+               /* $mail->addAttachment('/tmp/image.jpg', 'new.jpg'); */// Optional name
 
-        $mail->send();
-        echo 'Mensagem enviada!';
-    } catch (Exception $e) {
-        echo 'Mensagem não pode ser enviada. Mailer Error: ', $mail->ErrorInfo;
+               //Content
+               $mail->isHTML(true); // Set email format to HTML
+               $mail->CharSet = 'UTF-8';
+               $mail->Subject = 'Formulário de contato';
+               $mail->Body = "<font size='2' face='arial'>";
+               $mail->Body .= "<strong>Formulário de Contato - landing-page</strong><br /><br />";
+               $mail->Body .= "<strong>Nome:</strong> $nome<br />";
+               $mail->Body .= "<strong>Telefone:</strong> $telefone<br /><br />";
+               $mail->Body .= "<strong>Email:</strong> $email<br /><br />";
+               $mail->Body .= "<strong>Cidade:</strong> $cidade<br /><br />";
+               $mail->Body .= "<strong>Observação:</strong> $observacao<br />";
+               $mail->Body .= "</font>";
+               $mail->AltBody = strip_tags($mail->Body);
+
+               if ($mail->send()) {
+                   echo '<script>
+                       window.alert("Mensagem enviada! Entraremos em contato em breve.");
+                   </script>';
+               }
+           } catch (Exception $e) {
+               echo 'A mensagem não pode ser enviada. Mailer Error: ', $mail->ErrorInfo;
+           }
+       }
     }
 ?>
 <!DOCTYPE html>
@@ -122,8 +147,8 @@
                         <div class="col-12 col-sm-7 order-sm-first d-flex flex-column justify-content-center align-items-center justify-content-sm-start align-items-sm-start">
                             <h2 class="title-banner">FAÇA EMISSÃO DE NOTAS FISCAIS</h2>
                             <p class="text-banner">
-                                Intuitivo, prático e fácil de usar. 
-                                O Prático NFe veio para facilitar 
+                                Intuitivo, prático e fácil de usar.
+                                O Prático NFe veio para facilitar
                                 o dia a dia do seu negócio
                             </p>
                             <a href="https://praticonfe.com.br/" target="_blank" class="btn-lg btn-success bt-teste">FAÇA UM TESTE GRÁTIS</a>
@@ -243,7 +268,7 @@
                                         <input required type="text" name="cidade" class="form-control form-control-lg" id="inputCidade" placeholder="Cidade">
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <textarea required rows="8" name="observacao" class="form-control form-control-lg" id="inputObs" placeholder="OBSERVAÇÃO"></textarea>
+                                        <textarea rows="8" name="observacao" class="form-control form-control-lg" id="inputObs" placeholder="OBSERVAÇÃO"></textarea>
                                     </div>
                                     <div class="form-group col-12">
                                         <div class="g-recaptcha" data-sitekey="6LfsGZEUAAAAAOFy_0A8xldnkxX5gVDtsv-o33fT"></div>
