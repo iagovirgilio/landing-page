@@ -70,8 +70,8 @@
 
                if ($mail->send()) {
                    echo '<script>
-                       window.alert("Mensagem enviada! Entraremos em contato em breve.");
-                   </script>';
+                    window.alert("Mensagem enviada! Entraremos em contato em breve.");
+                </script>';
                }
            } catch (Exception $e) {
                echo 'A mensagem não pode ser enviada. Mailer Error: ', $mail->ErrorInfo;
@@ -85,15 +85,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="Iago Virgílio">
-    <meta name="keywords" content="sistema emissão nota fiscal, emissão nota fiscal, sistema, emissão, nota fiscal, nfe, nfce, autônomo, mei, online, rápido, fácil">
-    <meta name="description" content="Prático NF-e é um sistema para emissão de Nota Fiscal eletrônica que ajuda autônomos e MEI's na compra e venda de produtos e serviços de forma simples e rápida">
+    <meta name="keywords"
+        content="sistema emissão nota fiscal, emissão nota fiscal, sistema, emissão, nota fiscal, nfe, nfce, autônomo, mei, online, rápido, fácil">
+    <meta name="description"
+        content="Prático NF-e é um sistema para emissão de Nota Fiscal eletrônica que ajuda autônomos e MEI's na compra e venda de produtos e serviços de forma simples e rápida">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="assets/images/favicon.png" rel="icon" sizes="32x32" type="image/png">
     <link rel="stylesheet" href="node_modules/bootstrap-4.3.0-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/custom.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <title>Prático NFe - Emissão de Nota Fiscal eletrônica de forma simples e rápida!</title>
 
     <script src='https://www.google.com/recaptcha/api.js'></script>
@@ -111,21 +113,24 @@
                                 <a class="navbar-brand" href="#">
                                     <img src="assets/images/praticonfe.svg" alt="">
                                 </a>
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                    aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span><i class="fas fa-bars"></i>
                                 </button>
 
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                     <ul class="navbar-nav mr-auto">
                                         <li class="nav-item active">
-                                            <a class="nav-link" href="#functions">FUNCIONALIDADES <span class="sr-only">(current)</span></a>
+                                            <a class="nav-link" href="#functions">FUNCIONALIDADES <span
+                                                    class="sr-only">(current)</span></a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="#contact">SAIBA MAIS</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" target="_blank" href="https://praticonfe.com.br/#planos">PLANOS</a>
+                                            <a class="nav-link" target="_blank"
+                                                href="https://praticonfe.com.br/#planos">PLANOS</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -145,17 +150,56 @@
                     <div class="row">
 
                         <div class="col-12 col-sm-5 d-flex justify-content-center align-items-center">
-                            <img src="assets/images/phone.png" alt="" class="img-fluid phone">
+
+                            <div class="col-12 bg-form">
+                                <form action="" method="POST" class="mt-3">
+                                    <div class="col-12 text-center">
+                                        <h3>SAIBA MAIS</h3>
+
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <input required type="text" name="nome" class="form-control" id="inputNome"
+                                                placeholder="Nome" autofocus>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <input required type="email" name="email" class="form-control"
+                                                id="inputEmail" placeholder="Email">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <input required type="text" name="telefone" class="form-control"
+                                                id="inputTelefone" placeholder="Telefone">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <input required type="text" name="cidade" class="form-control"
+                                                id="inputCidade" placeholder="Cidade">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <textarea rows="4" name="observacao" class="form-control" id="inputObs"
+                                                placeholder="OBSERVAÇÃO"></textarea>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <div class="g-recaptcha"
+                                                data-sitekey="6LfsGZEUAAAAAOFy_0A8xldnkxX5gVDtsv-o33fT"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-12 text-center">
+                                        <button type="submit" class="btn btn-success">ENVIAR</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
 
-                        <div class="col-12 col-sm-7 order-sm-first d-flex flex-column justify-content-center align-items-center justify-content-sm-start align-items-sm-start">
+                        <div
+                            class="col-12 col-sm-7 order-sm-first d-flex flex-column justify-content-center align-items-center justify-content-sm-start align-items-sm-start">
                             <h2 class="title-banner">FAÇA EMISSÃO DE NOTAS FISCAIS</h2>
                             <p class="text-banner">
                                 Intuitivo, prático e fácil de usar.
                                 O Prático NFe veio para facilitar
                                 o dia a dia do seu negócio
                             </p>
-                            <a href="https://praticonfe.com.br/" target="_blank" class="btn-lg btn-success bt-teste">FAÇA UM TESTE GRÁTIS</a>
+                            <a href="https://praticonfe.com.br/" target="_blank"
+                                class="btn-lg btn-success bt-teste">FAÇA UM TESTE GRÁTIS</a>
                         </div>
 
                     </div>
@@ -248,46 +292,16 @@
         </div>
     </section>
 
-    <section id="contact" class="bg-contact">
+    <!-- <section id="contact" class="bg-contact">
         <div class="container-fluid">
             <div class="row">
                 <div class="container">
                     <div class="row">
-                        <div class="col-12 text-center">
-                            <h3 class="title-pa">SAIBA MAIS</h3>
-                        </div>
-                        <div class="col-12">
-                            <form action="" method="POST">
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <input required type="text" name="nome" class="form-control form-control-lg" id="inputNome" placeholder="Nome" autofocus>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <input required type="email" name="email" class="form-control form-control-lg" id="inputEmail" placeholder="Email">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <input required type="text" name="telefone" class="form-control form-control-lg" id="inputTelefone" placeholder="Telefone">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <input required type="text" name="cidade" class="form-control form-control-lg" id="inputCidade" placeholder="Cidade">
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <textarea rows="8" name="observacao" class="form-control form-control-lg" id="inputObs" placeholder="OBSERVAÇÃO"></textarea>
-                                    </div>
-                                    <div class="form-group col-12">
-                                        <div class="g-recaptcha" data-sitekey="6LfsGZEUAAAAAOFy_0A8xldnkxX5gVDtsv-o33fT"></div>
-                                    </div>
-                                </div>
-                                <div class="form-group col-12 text-center">
-                                    <button type="submit" class="btn btn-lg btn-success">ENVIAR</button>
-                                </div>
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <footer class="bg-footer">
         <div class="container-fluid">
@@ -300,7 +314,8 @@
                             </figure>
                         </div>
 
-                        <div class="col-12 col-sm-6 d-flex justify-content-center align-items-center justify-content-sm-end">
+                        <div
+                            class="col-12 col-sm-6 d-flex justify-content-center align-items-center justify-content-sm-end">
                             <a href="https://www.facebook.com/praticonfe/" target="_blank" class="social-item">
                                 <i class="fab fa-facebook-square"></i>
                             </a>
